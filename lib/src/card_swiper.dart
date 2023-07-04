@@ -285,11 +285,19 @@ class _CardSwiperState<T extends Widget> extends State<CardSwiper>
           angle: _cardAnimation.angle,
           child: ConstrainedBox(
             constraints: constraints,
-            child: widget.cardBuilder(
-              context,
-              _currentIndex!,
-              (100 * _cardAnimation.left / widget.threshold).ceil(),
-              (100 * _cardAnimation.top / widget.threshold).ceil(),
+            child: Container(
+              child: widget.cardBuilder(context, _currentIndex!),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(45),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.35),
+                    spreadRadius: 0,
+                    blurRadius: 7,
+                    offset: Offset(8, 5), // changes position of shadow
+                  ),
+                ],
+              ),
             ),
           ),
         ),
